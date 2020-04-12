@@ -53,7 +53,7 @@ class CfgVehicles {
         descriptionShort = CSTRING(EnevlopeSmallDescription);
         model = QPATHTOEF(apl,ace_envelope_small4.p3d);
         scope = 2;
-        GVAR(diggingDuration) = 20;
+        GVAR(diggingDuration) = 45;
         GVAR(removalDuration) = 12;
         GVAR(noGeoClass) = "ACE_envelope_small_NoGeo";
         GVAR(placementData)[] = {2,3,0.35};
@@ -69,7 +69,7 @@ class CfgVehicles {
         descriptionShort = CSTRING(EnevlopeBigDescription);
         model = QPATHTOEF(apl,ace_envelope_big4.p3d);
         scope = 2;
-        GVAR(diggingDuration) = 25;
+        GVAR(diggingDuration) = 90;
         GVAR(removalDuration) = 15;
         GVAR(noGeoClass) = "ACE_envelope_big_NoGeo";
         GVAR(placementData)[] = {6,1.1,0.20};
