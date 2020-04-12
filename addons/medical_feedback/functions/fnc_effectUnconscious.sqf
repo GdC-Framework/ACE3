@@ -42,7 +42,8 @@ switch (_mode) do {
             GVAR(ppUnconsciousBlackout) ppEffectCommit FX_UNCON_FADE_IN;
 
             // Handle next fade in
-            GVAR(nextFadeIn) = CBA_missionTime + 15 + random 5;
+            //GVAR(nextFadeIn) = CBA_missionTime + 15 + random 5;
+            GVAR(nextFadeIn) = CBA_missionTime + random 5;
         } else {
             ACE_player setVariable [QGVAR(effectUnconsciousTimeout), CBA_missionTime + FX_UNCON_FADE_OUT];
             GVAR(ppUnconsciousBlur)     ppEffectEnable true;
@@ -80,6 +81,7 @@ switch (_mode) do {
 
         if (_enable) then {
             if (GVAR(nextFadeIn) < CBA_missionTime) then {
+                private _openEyeDuration = random 5;
                 GVAR(ppUnconsciousBlur) ppEffectAdjust [5];
                 GVAR(ppUnconsciousBlur) ppEffectCommit 0;
 
@@ -91,10 +93,11 @@ switch (_mode) do {
 
                     GVAR(ppUnconsciousBlackout) ppEffectAdjust [1, 1, 0, [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1]];
                     GVAR(ppUnconsciousBlackout) ppEffectCommit (FX_UNCON_FADE_OUT * 1/3);
-                }, [], FX_UNCON_FADE_OUT * 2/3] call CBA_fnc_waitAndExecute;
+                }, [], (FX_UNCON_FADE_OUT * 2/3) + _openEyeDuration] call CBA_fnc_waitAndExecute;
 
-                ACE_player setVariable [QGVAR(effectUnconsciousTimeout), CBA_missionTime + FX_UNCON_FADE_OUT];
-                GVAR(nextFadeIn) = CBA_missionTime + FX_UNCON_FADE_OUT + 15 + random 5;
+                ACE_player setVariable [QGVAR(effectUnconsciousTimeout), CBA_missionTime + FX_UNCON_FADE_OUT + _openEyeDuration];
+                GVAR(nextFadeIn) = CBA_missionTime + FX_UNCON_FADE_OUT + _openEyeDuration + random 5;
+                //GVAR(nextFadeIn) = CBA_missionTime + FX_UNCON_FADE_OUT + 15 + random 5;
             } else {
                 GVAR(ppUnconsciousBlur)     ppEffectAdjust [5];
                 GVAR(ppUnconsciousBlackout) ppEffectAdjust [1, 1, 0, [0, 0, 0, 1], [0, 0, 0, 1], [0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 1]];

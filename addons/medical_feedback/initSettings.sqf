@@ -4,8 +4,8 @@
     [LSTRING(PainEffectType_DisplayName), LSTRING(PainEffectType_Description)],
     [ELSTRING(medical,Category), LSTRING(SubCategory)],
     [
-        [FX_PAIN_WHITE_FLASH, FX_PAIN_PULSATING_BLUR, FX_PAIN_CHROMATIC_ABERRATION, FX_PAIN_ONLY_BASE],
-        [LSTRING(painEffectType_whiteFlashing), LSTRING(painEffectType_pulsingBlur), LSTRING(painEffectType_chromAberration), LSTRING(painEffectType_onlyBase)],
+        [FX_PAIN_WHITE_FLASH, FX_PAIN_PULSATING_BLUR, FX_PAIN_CHROMATIC_ABERRATION, FX_PAIN_ONLY_BASE, FX_PAIN_CPC],
+        [LSTRING(painEffectType_whiteFlashing), LSTRING(painEffectType_pulsingBlur), LSTRING(painEffectType_chromAberration), LSTRING(painEffectType_onlyBase), LSTRING(painEffectType_cpc)],
         0
     ],
     false,
