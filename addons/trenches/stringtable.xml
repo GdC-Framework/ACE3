@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project name="ACE">
     <Package name="Trenches">
         <Key ID="STR_ACE_Trenches_EntrenchingToolName">
@@ -229,6 +229,7 @@
         <Key ID="STR_ACE_Trenches_CamouflageTrench">
             <English>Camouflage Trench</English>
             <Polish>Zakamufluj okop</Polish>
+            <French>Camoufler la tranchée</French>
             <Chinesesimp>伪装掩体</Chinesesimp>
             <Korean>참호 위장시키기</Korean>
             <Russian>Камуфлировать окоп</Russian>
