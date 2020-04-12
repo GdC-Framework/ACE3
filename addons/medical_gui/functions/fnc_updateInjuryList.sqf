@@ -21,17 +21,12 @@ params ["_ctrl", "_target", "_selectionN"];
 
 private _entries = [];
 
-// Add selected body part name
-private _bodyPartName = [
-    LSTRING(Head),
-    LSTRING(Torso),
-    LSTRING(LeftArm),
-    LSTRING(RightArm),
-    LSTRING(LeftLeg),
-    LSTRING(RightLeg)
-] select _selectionN;
-
-_entries pushBack [localize _bodyPartName, [1, 1, 1, 1]];
+// Add player name because it's very useful !
+if (name _target == name ACE_player) then {
+    _entries pushBack [name _target, [0.8, 0, 0.941, 1]];
+} else {
+    _entries pushBack [name _target, [1, 1, 1, 1]];
+};
 
 // Indicate if unit is bleeding at all
 if (IS_BLEEDING(_target)) then {
@@ -51,23 +46,6 @@ switch (GET_HEMORRHAGE(_target)) do {
     };
     case 4: {
         _entries pushBack [localize LSTRING(Lost_Blood4), [1, 0, 0, 1]];
-    };
-};
-
-// Indicate if a tourniquet is applied
-if (HAS_TOURNIQUET_APPLIED_ON(_target,_selectionN)) then {
-    _entries pushBack [localize LSTRING(Status_Tourniquet_Applied), [0.77, 0.51, 0.08, 1]];
-};
-
-// Indicate current body part fracture status
-switch (GET_FRACTURES(_target) select _selectionN) do {
-    case 1: {
-        _entries pushBack [localize LSTRING(Status_Fractured), [1, 0, 0, 1]];
-    };
-    case -1: {
-        if (EGVAR(medical,fractures) in [2, 3]) then { // Ignore if the splint has no effect
-            _entries pushBack [localize LSTRING(Status_SplintApplied), [0.2, 0.2, 1, 1]];
-        };
     };
 };
 
@@ -99,6 +77,38 @@ private _totalIvVolume = 0;
 
 if (_totalIvVolume >= 1) then {
     _entries pushBack [format [localize ELSTRING(medical_treatment,receivingIvVolume), floor _totalIvVolume], [1, 1, 1, 1]];
+};
+
+// CPC UPDATE
+// Add a separator before "body part" section
+_entries pushBack ["--------------------", [1, 1, 1, 1]];
+
+// Add selected body part name
+private _bodyPartName = [
+    LSTRING(Head),
+    LSTRING(Torso),
+    LSTRING(LeftArm),
+    LSTRING(RightArm),
+    LSTRING(LeftLeg),
+    LSTRING(RightLeg)
+] select _selectionN;
+_entries pushBack [localize _bodyPartName, [1, 1, 1, 1]];
+
+// Indicate if a tourniquet is applied
+if (HAS_TOURNIQUET_APPLIED_ON(_target,_selectionN)) then {
+    _entries pushBack [localize LSTRING(Status_Tourniquet_Applied), [0.77, 0.51, 0.08, 1]];
+};
+
+// Indicate current body part fracture status
+switch (GET_FRACTURES(_target) select _selectionN) do {
+    case 1: {
+        _entries pushBack [localize LSTRING(Status_Fractured), [1, 0, 0, 1]];
+    };
+    case -1: {
+        if (EGVAR(medical,fractures) in [2, 3]) then { // Ignore if the splint has no effect
+            _entries pushBack [localize LSTRING(Status_SplintApplied), [0.2, 0.2, 1, 1]];
+        };
+    };
 };
 
 // Add entries for open, bandaged, and stitched wounds

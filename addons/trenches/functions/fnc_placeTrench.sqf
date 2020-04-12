@@ -35,6 +35,13 @@ private _trench = createVehicle [_noGeoModel, [0, 0, 0], [], 0, "NONE"];
 
 GVAR(trench) = _trench;
 
+// Has to be delayed to ensure MP compatibility (vehicle spawned in same frame as texture is applied)
+[{
+    params ["_obj"];
+    private _texture = [_obj] call FUNC(getTrenchTexture);
+    _obj setObjectTextureGlobal [0, _texture];
+}, _trench] call CBA_fnc_execNextFrame;
+
 // prevent collisions with trench
 [QEGVAR(common,enableSimulationGlobal), [_trench, false]] call CBA_fnc_serverEvent;
 
