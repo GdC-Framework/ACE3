@@ -35,6 +35,14 @@ if (!isNil QGVAR(ppPain)) then {
     TRACE_1("delete pain",GVAR(ppPain));
     ppEffectDestroy GVAR(ppPain)
 };
+if (!isNil QGVAR(ppPainCPC)) then {
+    TRACE_1("delete pain",GVAR(ppPainCPC));
+    ppEffectDestroy GVAR(ppPainCPC)
+};
+if (!isNil QGVAR(ppPainCPCDB)) then {
+    TRACE_1("delete pain",GVAR(ppPainCPCDB));
+    ppEffectDestroy GVAR(ppPainCPCDB)
+};
 switch (GVAR(painEffectType)) do {
     case FX_PAIN_WHITE_FLASH: {
         GVAR(ppPain) = [
@@ -57,15 +65,27 @@ switch (GVAR(painEffectType)) do {
             [0, 0, false]
         ] call _fnc_createEffect;
     };
+    case FX_PAIN_CPC: {
+        GVAR(ppPainCPC) = [
+            "ColorCorrections",
+            13502, 
+            [1,1,0, [1,1,1,0], [1,1,1,1], [0,0,0,0]]
+        ] call _fnc_createEffect;
+        GVAR(ppPainCPCDB) = [
+            "DynamicBlur",
+            813,
+            [0]
+        ] call _fnc_createEffect;
+    };
 };
 // Base blur on high pain
-if (isNil QGVAR(ppPainBlur)) then {
+/*if (isNil QGVAR(ppPainBlur)) then {
     GVAR(ppPainBlur) = [
         "DynamicBlur",
         813, // 135xx does not work
         [0]
     ] call _fnc_createEffect;
-};
+};*/
 
 TRACE_1("created pain",GVAR(ppPain));
 
