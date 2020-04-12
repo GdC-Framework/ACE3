@@ -3,6 +3,9 @@
 // #define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
+// CPC UPDATE CRADASS DEBUG
+CPC_DEBUG_UNCONSCIOUS_RADIO_VOLUME = 0.2;
+
 //////////////////////////////////////////////////
 // Get Map Data
 //////////////////////////////////////////////////

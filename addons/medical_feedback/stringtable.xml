@@ -103,6 +103,10 @@
             <Turkish>Sadece yüksek ağrı etkisi</Turkish>
             <German>Nur bei starken Schmerzen</German>
         </Key>
+        <Key ID="STR_ACE_Medical_Feedback_PainEffectType_CPC">
+            <English>Duck pain effect</English>
+            <French>Effet de douleur de canard</French>
+        </Key>
         <Key ID="STR_ACE_Medical_Feedback_BloodVolumeEffectType_DisplayName">
             <English>Low Blood Volume Effect Type</English>
             <Russian>Визуальный эффект низкого объема крови</Russian>

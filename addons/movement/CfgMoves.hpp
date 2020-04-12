@@ -32,7 +32,7 @@ class CfgMovesBasic {
         };
 
         // jump animation - WEAPON RAISED - RUNNING
-        class RifleStandActionsNoAdjust;
+        /*class RifleStandActionsNoAdjust;
         class RifleStandActionsRunF: RifleStandActionsNoAdjust {
             getOver = "AovrPercMrunSrasWrflDf";
         };
@@ -76,6 +76,7 @@ class CfgMovesBasic {
         class RifleStandLowEvasiveActionsFL: RifleLowStandActionsNoAdjust {
             getOver = "ACE_AovrPercMrunSlowWrflDf";
         };
+		*/
     };
 };
 
