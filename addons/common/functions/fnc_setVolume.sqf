@@ -38,7 +38,22 @@ if (_setVolume) then {
     // ACRE2
     if (!isNil "acre_api_fnc_setGlobalVolume") then { [NORMAL_LEVEL^0.33] call acre_api_fnc_setGlobalVolume; };
     _unit setVariable ["acre_sys_core_isDisabled", false, true];
-
+    
+    // CPC UPDATE
+    private ["_player_radios", "_player_radios_config"];
+    _player_radios_config = _unit getVariable ["cpc_playerRadiosConfig", []];
+    if (count _player_radios_config  == 0) then {
+        // No radio config found. Two possibilites : bug or player doesn't have radio. Force everything to 1.
+        _player_radios =  [] call acre_api_fnc_getCurrentRadioList;
+        {
+            [_x, 1] call acre_api_fnc_setRadioVolume;
+        } forEach _player_radios;
+    } else {
+        // Standard behavior, apply previously saved configuration
+        {        
+            [_x select 0, _x select 1] call acre_api_fnc_setRadioVolume;
+        } forEach _player_radios_config;
+    };
 } else {
     // Vanilla Game
     2 fadeSound MUTED_LEVEL;
@@ -51,4 +66,15 @@ if (_setVolume) then {
     // ACRE2
     if (!isNil "acre_api_fnc_setGlobalVolume") then { [MUTED_LEVEL^0.33] call acre_api_fnc_setGlobalVolume; };
     _unit setVariable ["acre_sys_core_isDisabled", true, true];
+
+    // CPC UPDATE
+    private ["_player_radios", "_player_radios_config"];
+    _player_radios_config = [];
+    _player_radios =  [] call acre_api_fnc_getCurrentRadioList;
+    {
+        _player_radios_config pushBack [_x, [_x] call acre_api_fnc_getRadioVolume];
+        [_x, 0] call acre_api_fnc_setRadioVolume;
+    } forEach _player_radios;
+    // Save radio config on the player
+    _unit setVariable ["cpc_playerRadiosConfig", _player_radios_config];
 };

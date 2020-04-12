@@ -34,3 +34,13 @@
     [5, 600, 15], 
     true
 ] call CBA_fnc_addSetting;
+
+// Settings
+[
+    QGVAR(buildFatigueFactor), 
+    "SLIDER", 
+    ["Facteur de fatigue", "Le facteur de fatigue lors de la construction de tranchées (si 0, fatigue désactivée)"], 
+    LSTRING(Category),
+    [0, 10, 3.5, 1], 
+    true
+ ] call CBA_fnc_addSetting;
