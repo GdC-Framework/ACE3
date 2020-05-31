@@ -38,6 +38,11 @@ if (isNull GVAR(trench)) exitWith {};
 
 deleteVehicle GVAR(trench);
 private _trench = createVehicle [GVAR(trenchClass), [0, 0, 0], [], 0, "NONE"];
+[{
+    params ["_obj"];
+    private _texture = [_obj] call FUNC(getTrenchTexture);
+    _obj setObjectTextureGlobal [0, _texture];
+}, _trench] call CBA_fnc_execNextFrame;
 
 GVAR(trenchPlacementData) params ["_dx", "_dy", "_offset"];
 private _basePos = GVAR(trenchPos);
