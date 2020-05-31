@@ -53,8 +53,8 @@ class CfgVehicles {
         descriptionShort = CSTRING(EnevlopeSmallDescription);
         model = QPATHTOEF(apl,ace_envelope_small4.p3d);
         scope = 2;
-        GVAR(diggingDuration) = 45;
-        GVAR(removalDuration) = 12;
+        GVAR(diggingDuration) = QGVAR(smallEnvelopeDigTime);
+        GVAR(removalDuration) = 8;
         GVAR(noGeoClass) = "ACE_envelope_small_NoGeo";
         GVAR(placementData)[] = {2,3,0.35};
         GVAR(grassCuttingPoints)[] = {{0,-0.5,0}};
@@ -62,6 +62,8 @@ class CfgVehicles {
         class EventHandlers {
             class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
+        hiddenSelections[] = {"velka"};
+        hiddenSelectionsTextures[] = {"a3\map_data\gdt_marsh_co.paa"};
     };
     class ACE_envelope_big: BagFence_base_F {
         author = ECSTRING(common,ACETeam);
@@ -69,7 +71,7 @@ class CfgVehicles {
         descriptionShort = CSTRING(EnevlopeBigDescription);
         model = QPATHTOEF(apl,ace_envelope_big4.p3d);
         scope = 2;
-        GVAR(diggingDuration) = 90;
+        GVAR(diggingDuration) = QGVAR(bigEnvelopeDigTime);
         GVAR(removalDuration) = 15;
         GVAR(noGeoClass) = "ACE_envelope_big_NoGeo";
         GVAR(placementData)[] = {6,1.1,0.20};
@@ -78,6 +80,8 @@ class CfgVehicles {
         class EventHandlers {
             class CBA_Extended_EventHandlers: CBA_Extended_EventHandlers {};
         };
+        hiddenSelections[] = {"velka"};
+        hiddenSelectionsTextures[] = {"a3\map_data\gdt_marsh_co.paa"};
     };
 
     class ACE_envelope_small_NoGeo: ACE_envelope_small {
